@@ -1,15 +1,29 @@
 import random
 
 
+# Прописываем классы для отлавливания исключений
+class BoardException(Exception):
+    pass
+
+
+class BoardOutException(BoardException):
+    def __str__(self):
+        return "Вы стреляете в доску!!!"
+
+
 class Dot:
     def __init__(self, x: int, y: int):
         self.x = x  # столбец
         self.y = y  # строка
 
     def __eq__(self, other):
+        # метод сравнения точек
         if isinstance(other, Dot):
             return self.x == other.x and self.y == other.y
         return False
+
+    def __repr__(self):
+        return f'Dot({self.x},{self.y})'
 
 
 class Ship:
